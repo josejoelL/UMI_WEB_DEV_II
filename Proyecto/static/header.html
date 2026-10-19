@@ -1,0 +1,248 @@
+<header class="shadow-sm" style="position: sticky; top: 0; z-index: 1050;">
+  <style>
+    body {
+      font-family: Inter, "Segoe UI", sans-serif;
+    }
+
+    .promo-gif-icon {
+      display: inline-block;
+      animation: promo-gif-bounce 1.3s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    .boton-carrito-header {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar-brand .fw-bold {
+      letter-spacing: -0.04em;
+    }
+
+    .navbar-brand .small {
+      letter-spacing: 0.02em;
+    }
+
+    .nav-pills .nav-link {
+      font-size: 0.76rem;
+      letter-spacing: 0.02em;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: #dc2626 !important;
+    }
+
+    .btn {
+      font-size: 0.82rem;
+      padding-top: 0.62rem;
+      padding-bottom: 0.62rem;
+    }
+
+    .boton-carrito-header .carrito-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.5rem;
+      height: 1.5rem;
+      padding: 0 0.45rem;
+      border-radius: 999px;
+      background: #ffdf5f;
+      color: #111827;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1;
+      box-shadow: 0 4px 10px rgba(255, 205, 45, 0.35);
+    }
+
+    .boton-carrito-header:hover .texto-carrito {
+      content: 'Proceder al pago';
+    }
+
+    .dropdown-menu .dropdown-item:hover {
+      background: #fff4db;
+      color: #111827;
+    }
+
+    @keyframes promo-gif-bounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      20% { transform: translateY(-2px) rotate(-6deg); }
+      40% { transform: translateY(-4px) rotate(6deg); }
+      60% { transform: translateY(-2px) rotate(-4deg); }
+      80% { transform: translateY(0) rotate(4deg); }
+    }
+  </style>
+
+  <div class="bg-warning text-dark py-2 border-bottom">
+    <div class="container d-flex justify-content-center align-items-center gap-3 small fw-semibold text-uppercase">
+      <span class="promo-gif-icon">🚚</span>
+      <span>Aprovecha envíos gratis</span>
+      <a href="galeria.html" class="btn btn-sm btn-dark rounded-pill px-3 py-1">Aprovecha</a>
+    </div>
+  </div>
+
+  <div class="bg-white py-2 border-bottom">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2 m-0 text-decoration-none" href="index.html">
+        <svg class="logo-icon text-danger" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          <circle cx="12" cy="10" r="2.5" />
+          <path d="M9.5 14c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5" />
+        </svg>
+        <div class="d-flex flex-column ms-1">
+          <span class="fw-bold fs-4 text-dark lh-1">Tienda Sara</span>
+          <span class="small text-secondary fw-normal" style="font-size: 0.75rem;">Maternidad y Bebés</span>
+        </div>
+      </a>
+
+      <div class="dropdown position-relative my-1 flex-grow-1 mx-3 mx-lg-5" style="max-width: 450px;">
+        <form class="d-flex input-group rounded-pill border bg-white shadow-sm overflow-hidden" role="search" id="searchForm">
+          <input class="form-control border-0 shadow-none ps-3 bg-transparent" type="search" id="searchInput" placeholder="Buscar en Tienda Sara..." autocomplete="off" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-danger px-3 rounded-pill m-1 d-flex align-items-center justify-content-center border-0" type="submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+
+        <ul class="dropdown-menu w-100 shadow rounded-3 mt-1 border-0" id="searchDropdown">
+          <li><h6 class="dropdown-header text-uppercase small text-muted">Sugerencias</h6></li>
+          <li><a class="dropdown-item py-2" href="galeria.html"><span class="text-danger">👶</span> Ropa para Bebés y Maternidad</a></li>
+          <li><a class="dropdown-item py-2" href="galeria.html"><span class="text-danger">🍼</span> Accesorios y Biberones</a></li>
+          <li><a class="dropdown-item py-2" href="carrito.html"><span class="text-danger">🛒</span> Mi Carrito de Compras</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-muted small" href="index.html">🏠 Ir a Inicio</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center gap-2 ms-2">
+        <button class="btn btn-light border border-secondary-subtle rounded-pill px-3 py-2 text-dark fw-semibold d-flex align-items-center gap-2" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
+          <span class="fs-6">◌</span>
+          <span>Iniciar sesión</span>
+        </button>
+        <a id="botonCarritoHeader" class="btn btn-light border border-secondary-subtle rounded-pill px-3 py-2 text-dark fw-semibold d-flex align-items-center gap-2 boton-carrito-header" href="carrito.html" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
+          <span class="fs-6">🛒</span>
+          <span class="texto-carrito">Carrito</span>
+          <span class="carrito-badge" id="carritoContador">0</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 border-bottom">
+    <div class="container">
+      <ul id="subNavLinks" class="nav nav-pills gap-2 gap-lg-3 mb-0 w-100">
+        <li class="nav-item">
+          <a class="nav-link text-secondary fw-semibold px-3 py-2 rounded-pill" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary fw-semibold px-3 py-2 rounded-pill" href="galeria.html">Galería</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary fw-semibold px-3 py-2 rounded-pill" href="carrito.html">Carrito</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    const PRODUCTOS_BUSQUEDA = [
+      'Set de ropa para bebé', 'Mochila para maternidad', 'Biberón anticolisión',
+      'Silla de comer para bebé', 'Kit de baño', 'Cochecito compacto',
+      'Manta de algodón', 'Set de toallas', 'Pañaleras premium',
+      'Lencería prenatal', 'Cargador para coche', 'Caminadora para bebé'
+    ];
+
+    function obtenerCarrito() {
+      try {
+        return JSON.parse(localStorage.getItem('tiendaSaraCarrito')) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function actualizarContadorCarrito() {
+      const contador = document.getElementById('carritoContador');
+      if (!contador) return;
+
+      const total = obtenerCarrito().reduce((sum, item) => sum + (Number(item.cantidad) || 0), 0);
+      contador.textContent = total;
+      contador.parentElement.style.display = total > 0 ? 'inline-flex' : 'inline-flex';
+    }
+
+    function configurarBuscadorHeader() {
+      const input = document.getElementById('searchInput');
+      const dropdown = document.getElementById('searchDropdown');
+      const form = document.getElementById('searchForm');
+      if (!input || !dropdown) return;
+
+      const renderSugerencias = (valor) => {
+        const texto = valor.trim().toLowerCase();
+        const sugerencias = texto
+          ? PRODUCTOS_BUSQUEDA.filter(producto => producto.toLowerCase().includes(texto)).slice(0, 5)
+          : PRODUCTOS_BUSQUEDA.slice(0, 4);
+
+        const items = sugerencias.length
+          ? sugerencias.map(sugerencia => `
+              <li>
+                <a class="dropdown-item py-2" href="galeria.html">
+                  <span class="text-danger">🔎</span> ${sugerencia}
+                </a>
+              </li>
+            `).join('')
+          : '<li><span class="dropdown-item py-2 text-muted">Sin coincidencias</span></li>';
+
+        dropdown.innerHTML = `
+          <li><h6 class="dropdown-header text-uppercase small text-muted">Sugerencias</h6></li>
+          ${items}
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-muted small" href="galeria.html">Ver catálogo completo</a></li>
+        `;
+      };
+
+      input.addEventListener('input', (event) => {
+        renderSugerencias(event.target.value);
+      });
+
+      input.addEventListener('focus', () => renderSugerencias(input.value));
+
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const busqueda = input.value.trim();
+        if (busqueda) {
+          window.location.href = `galeria.html?buscar=${encodeURIComponent(busqueda)}`;
+        } else {
+          window.location.href = 'galeria.html';
+        }
+      });
+    }
+
+    function configurarBotonCarritoHeader() {
+      const carritoLink = document.getElementById('botonCarritoHeader');
+      const texto = carritoLink?.querySelector('.texto-carrito');
+      if (!carritoLink || !texto) return;
+
+      const textoOriginal = 'Carrito';
+      const textoHover = 'Proceder al pago';
+
+      carritoLink.addEventListener('mouseenter', () => {
+        texto.textContent = textoHover;
+      });
+
+      carritoLink.addEventListener('mouseleave', () => {
+        texto.textContent = textoOriginal;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      actualizarContadorCarrito();
+      configurarBuscadorHeader();
+      configurarBotonCarritoHeader();
+    });
+  </script>
+</header>

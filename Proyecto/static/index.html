@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina Principal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.css" integrity="sha512-zylce7fP6h4usg536JBTRj2rt7q22Z0qicHSlgSK53Irtfkz37ate3KCQ59du+aXZV6R3yyL2X1LyGKBEUMZaw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.js" integrity="sha512-zylce7fP6h4usg536JBTRj2rt7q22Z0qicHSlgSK53Irtfkz37ate3KCQ59du+aXZV6R3yyL2X1LyGKBEUMZaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #f7f7f5 0%, #f3f4f6 100%);
+      color: #1f2937;
+      font-family: Inter, "Segoe UI", sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+
+    .card {
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
+    }
+
+    .cart-cta {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+    }
+
+    .cart-cta a {
+      background: linear-gradient(180deg, #ffdb5e, #ffc928);
+      color: #111827;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(255, 201, 40, 0.35);
+      font-weight: 800;
+      padding: 0.8rem 1.1rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cart-cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(255, 201, 40, 0.42);
+    }
+
+    .carousel {
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      inset: 0;
+      padding: 2rem;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.54), rgba(15, 23, 42, 0.12));
+    }
+
+    .carousel-caption > div {
+      max-width: 500px;
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .carousel-caption h1,
+    .carousel-caption h2 {
+      font-size: clamp(1.9rem, 2.4vw, 2.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .btn-lg {
+      padding: 0.7rem 1.15rem;
+      font-size: 0.92rem;
+    }
+
+    .card-img-top {
+      border-bottom: 1px solid rgba(17, 24, 39, 0.04);
+    }
+
+    .card-body {
+      padding: 1.15rem 1.1rem 1.2rem;
+    }
+
+    .modal-oferta .modal-content {
+      border-radius: 2rem;
+      overflow: hidden;
+      border: 0;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-oferta .modal-body {
+      padding: 0;
+    }
+
+    .modal-oferta .imagen-oferta {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div id="header-placeholder"></div>
+
+  <div class="cart-cta">
+    <a href="carrito.html" class="d-inline-flex align-items-center gap-2">🛒 Ver carrito</a>
+  </div>
+
+  <main>
+    <section class="container py-4">
+      <div id="promoCarousel" class="carousel slide shadow-sm rounded-4 overflow-hidden border border-2 border-white">
+        <div class="carousel-indicators">
+          <button type="button" data-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1400&q=80" class="d-block w-100" alt="Promoción de maternidad y bebés" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-flex align-items-center justify-content-start h-100 text-start">
+              <div class="bg-dark bg-opacity-50 rounded-4 p-4 p-lg-5 w-50">
+                <p class="text-uppercase small fw-semibold text-warning mb-2">Oferta especial</p>
+                <h1 class="display-6 fw-bold text-white mb-3">Ahorra en ropa y accesorios para bebé</h1>
+                <p class="text-white-50 mb-3">Descubre prendas cómodas y modernas para cada etapa de la maternidad.</p>
+                <a href="galeria.html" class="btn btn-warning btn-lg fw-bold px-4">Comprar ahora</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&w=1400&q=80" class="d-block w-100" alt="Promoción para regalos" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-flex align-items-center justify-content-start h-100 text-start">
+              <div class="bg-dark bg-opacity-50 rounded-4 p-4 p-lg-5 w-50">
+                <p class="text-uppercase small fw-semibold text-warning mb-2">Novedades</p>
+                <h2 class="display-6 fw-bold text-white mb-3">Regalos ideal para la llegada del bebé</h2>
+                <p class="text-white-50 mb-3">Encuentra productos elegantes, útiles y seguros para cada momento.</p>
+                <a href="galeria.html" class="btn btn-warning btn-lg fw-bold px-4">Ver novedades</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80" class="d-block w-100" alt="Promoción de cuidado maternal" style="height: 420px; object-fit: cover;">
+            <div class="carousel-caption d-flex align-items-center justify-content-start h-100 text-start">
+              <div class="bg-dark bg-opacity-50 rounded-4 p-4 p-lg-5 w-50">
+                <p class="text-uppercase small fw-semibold text-warning mb-2">Hasta 40% off</p>
+                <h2 class="display-6 fw-bold text-white mb-3">Cuida cada detalle con lo mejor para mamá y bebé</h2>
+                <p class="text-white-50 mb-3">Calidez, calidad y productos pensados para tu día a día.</p>
+                <a href="galeria.html" class="btn btn-warning btn-lg fw-bold px-4">Explorar ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-carousel="prev" aria-label="Anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-carousel="next" aria-label="Siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="container py-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="h3 fw-bold mb-0 text-dark">Categorías principales</h2>
+        <a href="galeria.html" class="btn btn-link text-danger text-decoration-none fw-semibold p-0">Ver todas</a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Ropa para bebés" style="height: 220px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h3 class="h5 fw-bold mb-2">Ropa para bebés</h3>
+              <a href="galeria.html" class="btn btn-outline-danger btn-sm rounded-pill">Ver más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Maternidad" style="height: 220px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h3 class="h5 fw-bold mb-2">Maternidad</h3>
+              <a href="galeria.html" class="btn btn-outline-danger btn-sm rounded-pill">Ver más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Accesorios" style="height: 220px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h3 class="h5 fw-bold mb-2">Accesorios</h3>
+              <a href="galeria.html" class="btn btn-outline-danger btn-sm rounded-pill">Ver más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Cuidado del bebé" style="height: 220px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h3 class="h5 fw-bold mb-2">Cuidado</h3>
+              <a href="galeria.html" class="btn btn-outline-danger btn-sm rounded-pill">Ver más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="h3 fw-bold mb-0 text-dark">Productos populares</h2>
+        <a href="galeria.html" class="btn btn-link text-danger text-decoration-none fw-semibold p-0">Ver catálogo</a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Set de ropa para bebé" style="height: 220px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <span class="text-danger small fw-bold mb-2">Nuevo</span>
+              <h3 class="h5 fw-bold">Set de ropa para bebé</h3>
+              <p class="text-secondary small mb-3">Tela suave y cómoda para cada día.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold fs-5 text-dark">$89.00</span>
+                <button class="btn btn-danger btn-sm rounded-pill">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Cochecito compacto" style="height: 220px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <span class="text-danger small fw-bold mb-2">Top venta</span>
+              <h3 class="h5 fw-bold">Cochecito compacto</h3>
+              <p class="text-secondary small mb-3">Ligero, práctico y perfecto para viajes.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold fs-5 text-dark">$249.00</span>
+                <button class="btn btn-danger btn-sm rounded-pill">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Mochila para maternidad" style="height: 220px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <span class="text-danger small fw-bold mb-2">Oferta</span>
+              <h3 class="h5 fw-bold">Mochila maternal</h3>
+              <p class="text-secondary small mb-3">Organización total para la nueva aventura.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold fs-5 text-dark">$129.00</span>
+                <button class="btn btn-danger btn-sm rounded-pill">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Kit para cuidado" style="height: 220px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <span class="text-danger small fw-bold mb-2">Popular</span>
+              <h3 class="h5 fw-bold">Kit de cuidado</h3>
+              <p class="text-secondary small mb-3">Todo lo esencial para el día a día.</p>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <span class="fw-bold fs-5 text-dark">$99.00</span>
+                <button class="btn btn-danger btn-sm rounded-pill">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-4">
+      <div class="row align-items-center bg-danger bg-gradient text-white rounded-4 p-4 p-lg-5 g-4 shadow-sm">
+        <div class="col-lg-8">
+          <p class="text-uppercase small fw-semibold mb-2 text-warning">Compra ahora</p>
+          <h2 class="display-6 fw-bold mb-3">Ahorra en productos para mamá y bebé</h2>
+          <p class="mb-0 text-white-50">Envíos rápidos, ofertas exclusivas y productos seleccionados con la mejor calidad para tu familia.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="galeria.html" class="btn btn-light btn-lg fw-bold rounded-pill px-4">Comprar ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-4">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100 rounded-4">
+            <div class="card-body p-4">
+              <p class="text-uppercase small text-danger fw-bold mb-2">Nuestra tienda</p>
+              <h2 class="h3 fw-bold mb-3">Todo lo que necesitas para tu familia</h2>
+              <p class="text-secondary mb-0">En Tienda Sara encontrarás productos para cada etapa del crecimiento, cuidando calidad, seguridad y comodidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                  <div class="mb-3 text-danger fs-3">🚚</div>
+                  <h3 class="h5 fw-bold mb-2">Envío rápido</h3>
+                  <p class="text-secondary mb-0">Entrega segura en tiempo récord y seguimiento en todo momento.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                  <div class="mb-3 text-danger fs-3">💳</div>
+                  <h3 class="h5 fw-bold mb-2">Pago seguro</h3>
+                  <p class="text-secondary mb-0">Compra protegida con métodos confiables y simples.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                  <div class="mb-3 text-danger fs-3">🛡️</div>
+                  <h3 class="h5 fw-bold mb-2">Productos confiables</h3>
+                  <p class="text-secondary mb-0">Marcas y artículos seleccionados con altos estándares de calidad.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                  <div class="mb-3 text-danger fs-3">🎁</div>
+                  <h3 class="h5 fw-bold mb-2">Regalos ideales</h3>
+                  <p class="text-secondary mb-0">Perfectos para showers, celebraciones y momentos especiales.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-4">
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <p class="text-uppercase small text-danger fw-bold mb-2">Sobre nosotros</p>
+            <h2 class="h3 fw-bold mb-3">Calidez, confianza y atención para cada familia</h2>
+            <p class="text-secondary mb-0">Somos una tienda dedicada a brindar soluciones para maternidad, bebés y hogar, con atención personalizada y productos pensados para cuidar cada detalle.</p>
+          </div>
+          <div class="col-lg-6">
+            <div class="row text-center g-3">
+              <div class="col-4">
+                <div class="bg-light rounded-4 p-3">
+                  <div class="display-6 fw-bold text-dark">2.5k+</div>
+                  <small class="text-secondary">Clientes</small>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="bg-light rounded-4 p-3">
+                  <div class="display-6 fw-bold text-dark">800+</div>
+                  <small class="text-secondary">Productos</small>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="bg-light rounded-4 p-3">
+                  <div class="display-6 fw-bold text-dark">4.9/5</div>
+                  <small class="text-secondary">Reseñas</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white pt-5 pb-4 mt-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h3 class="h4 fw-bold mb-3">Tienda Sara</h3>
+          <p class="text-white-50 mb-0">Todo para mamá, bebé y hogar con calidad, estilo y atención cercana.</p>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+          <h4 class="h6 text-uppercase fw-bold mb-3 text-warning">Explorar</h4>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
+            <li class="mb-2"><a href="galeria.html" class="text-white-50 text-decoration-none">Galería</a></li>
+            <li><a href="carrito.html" class="text-white-50 text-decoration-none">Carrito</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+          <h4 class="h6 text-uppercase fw-bold mb-3 text-warning">Ayuda</h4>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Envíos</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Devoluciones</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+          <h4 class="h6 text-uppercase fw-bold mb-3 text-warning">Contacto</h4>
+          <ul class="list-unstyled mb-0 text-white-50">
+            <li class="mb-2">Email: hola@tiendasara.com</li>
+            <li class="mb-2">Tel: +52 55 1234 5678</li>
+            <li>Mon-Sat: 9:00 - 18:00</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-secondary my-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small">
+        <span>© 2026 Tienda Sara. Todos los derechos reservados.</span>
+        <span class="mt-2 mt-md-0">Hecho con amor para familias felices.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade modal-oferta" id="modalOfertaBuenFin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body position-relative">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <img class="imagen-oferta" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80" alt="Oferta del Buen Fin">
+          <div class="p-4 p-lg-5">
+            <span class="badge rounded-pill bg-warning text-dark px-3 py-2 mb-3 fw-bold">Buen Fin</span>
+            <h2 class="fw-bold mb-3">¿Seguro que deseas comprarlo?</h2>
+            <p class="text-secondary mb-4">Llegaron las mejores ofertas del Buen Fin. Visita la galería y descubre promociones exclusivas para ti y tu familia.</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <button type="button" class="btn btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">No, gracias</button>
+              <div class="d-flex gap-2">
+                <a href="galeria.html" class="btn btn-warning rounded-pill px-4 fw-bold">Ver más</a>
+                <button type="button" class="btn btn-danger rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function obtenerCarrito() {
+      try {
+        return JSON.parse(localStorage.getItem('tiendaSaraCarrito')) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function actualizarContadorCarrito() {
+      const contador = document.getElementById('carritoContador');
+      if (!contador) return;
+      const total = obtenerCarrito().reduce((sum, item) => sum + (Number(item.cantidad) || 0), 0);
+      contador.textContent = total;
+    }
+
+    function configurarBotonCarritoHeader() {
+      const carritoLink = document.getElementById('botonCarritoHeader');
+      const texto = carritoLink?.querySelector('.texto-carrito');
+      if (!carritoLink || !texto) return;
+
+      const textoOriginal = 'Carrito';
+      const textoHover = 'Proceder al pago';
+
+      carritoLink.addEventListener('mouseenter', () => {
+        texto.textContent = textoHover;
+      });
+
+      carritoLink.addEventListener('mouseleave', () => {
+        texto.textContent = textoOriginal;
+      });
+    }
+
+    function marcarSubmenuActivo() {
+      const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
+      const enlaces = document.querySelectorAll('#subNavLinks .nav-link, #header-placeholder .nav-link');
+
+      enlaces.forEach(enlace => {
+        const href = enlace.getAttribute('href');
+        if (!href) return;
+
+        const hrefNormalizado = href.replace(/^\.\//, '');
+        enlace.classList.remove('btn', 'btn-light', 'btn-secondary', 'bg-light');
+
+        if (hrefNormalizado === paginaActual) {
+          enlace.classList.remove('text-secondary', 'bg-transparent');
+          enlace.classList.add('active', 'text-danger', 'fw-bold');
+          enlace.style.backgroundColor = 'transparent';
+        } else {
+          enlace.classList.remove('active', 'text-danger', 'fw-bold');
+          enlace.style.backgroundColor = 'transparent';
+          if (!enlace.classList.contains('text-secondary')) {
+            enlace.classList.add('text-secondary');
+          }
+        }
+      });
+    }
+
+    function prepararSubmenu() {
+      const placeholder = document.getElementById('header-placeholder');
+      if (!placeholder) return;
+
+      const dropdowns = placeholder.querySelectorAll('.dropdown-toggle');
+      dropdowns.forEach(enlace => {
+        enlace.setAttribute('data-bs-toggle', 'dropdown');
+        enlace.setAttribute('aria-expanded', 'false');
+        if (!enlace.classList.contains('dropdown-toggle')) {
+          enlace.classList.add('dropdown-toggle');
+        }
+      });
+
+      const navLinks = placeholder.querySelectorAll('.nav-link');
+      navLinks.forEach(enlace => {
+        if (!enlace.hasAttribute('data-bs-toggle') && enlace.closest('.dropdown')) {
+          enlace.setAttribute('data-bs-toggle', 'dropdown');
+        }
+      });
+
+      if (window.bootstrap && bootstrap.Dropdown) {
+        placeholder.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+          if (!toggle._bs_dropdown) {
+            new bootstrap.Dropdown(toggle);
+          }
+        });
+      }
+
+      marcarSubmenuActivo();
+    }
+
+    function cargarHeader() {
+      const placeholder = document.getElementById('header-placeholder');
+      if (!placeholder) return;
+
+      const fallbackHtml = `
+        <div class="bg-warning text-dark py-2 border-bottom">
+          <div class="container d-flex justify-content-center align-items-center gap-3 small fw-semibold text-uppercase">
+            <span>🚚</span>
+            <span>Aprovecha envíos gratis</span>
+            <a href="galeria.html" class="btn btn-sm btn-dark rounded-pill px-3 py-1">Aprovecha</a>
+          </div>
+        </div>
+        <div class="bg-white border-bottom py-2">
+          <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="fw-bold text-dark text-decoration-none">Tienda Sara</a>
+            <div class="d-flex align-items-center gap-2">
+              <a href="index.html" class="btn btn-light border">Inicio</a>
+              <a href="galeria.html" class="btn btn-light border">Galería</a>
+              <a href="carrito.html" class="btn btn-warning">Carrito</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      fetch('header.html')
+        .then(response => {
+          if (!response.ok) throw new Error('No se pudo cargar el header');
+          return response.text();
+        })
+        .then(data => {
+          if (!data || !data.trim()) throw new Error('Header vacío');
+          placeholder.innerHTML = data;
+          prepararSubmenu();
+          actualizarContadorCarrito();
+          configurarBotonCarritoHeader();
+        })
+        .catch(error => {
+          console.error('Error al cargar el header:', error);
+          placeholder.innerHTML = fallbackHtml;
+          marcarSubmenuActivo();
+          actualizarContadorCarrito();
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      marcarSubmenuActivo();
+      cargarHeader();
+      setTimeout(() => {
+        const modalOferta = document.getElementById('modalOfertaBuenFin');
+        if (modalOferta) {
+          const instancia = new bootstrap.Modal(modalOferta);
+          instancia.show();
+        }
+      }, 700);
+
+      const promoCarousel = document.getElementById('promoCarousel');
+      if (promoCarousel) {
+        const items = Array.from(promoCarousel.querySelectorAll('.carousel-item'));
+        const indicators = Array.from(promoCarousel.querySelectorAll('.carousel-indicators button'));
+        const prevButton = promoCarousel.querySelector('.carousel-control-prev');
+        const nextButton = promoCarousel.querySelector('.carousel-control-next');
+
+        let slideIndex = 0;
+        let autoplayId = null;
+
+        function renderSlide(index) {
+          if (!items.length) return;
+
+          slideIndex = (index + items.length) % items.length;
+
+          items.forEach((item, idx) => {
+            item.classList.toggle('active', idx === slideIndex);
+          });
+
+          indicators.forEach((indicator, idx) => {
+            const isActive = idx === slideIndex;
+            indicator.classList.toggle('active', isActive);
+            indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+        }
+
+        function nextSlide() {
+          renderSlide(slideIndex + 1);
+        }
+
+        function prevSlide() {
+          renderSlide(slideIndex - 1);
+        }
+
+        function startAutoplay() {
+          clearInterval(autoplayId);
+          autoplayId = setInterval(nextSlide, 4500);
+        }
+
+        if (prevButton) {
+          prevButton.addEventListener('click', () => {
+            prevSlide();
+            startAutoplay();
+          });
+        }
+
+        if (nextButton) {
+          nextButton.addEventListener('click', () => {
+            nextSlide();
+            startAutoplay();
+          });
+        }
+
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            renderSlide(index);
+            startAutoplay();
+          });
+        });
+
+        renderSlide(0);
+        startAutoplay();
+      }
+    });
+  </script>
+</body>
+</html>

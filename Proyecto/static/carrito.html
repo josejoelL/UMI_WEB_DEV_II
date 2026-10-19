@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.css" integrity="sha512-zylce7fP6h4usg536JBTRj2rt7q22Z0qicHSlgSK53Irtfkz37ate3KCQ59du+aXZV6R3yyL2X1LyGKBEUMZaw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.js" integrity="sha512-zylce7fP6h4usg536JBTRj2rt7q22Z0qicHSlgSK53Irtfkz37ate3KCQ59du+aXZV6R3yyL2X1LyGKBEUMZaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+      body {
+        background: linear-gradient(180deg, #f7f7f5 0%, #f3f4f6 100%);
+        color: #111827;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
+
+      .paginaCarrito {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+      }
+
+      .etiquetaPagina {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #fff4ce;
+        color: #7a5400;
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .cajaCarrito {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(17,24,39,0.06);
+        border-radius: 18px;
+        box-shadow: 0 12px 22px rgba(15, 23, 42, 0.05);
+      }
+
+      .listaCarrito {
+        padding: 1.2rem;
+      }
+
+      .articuloCarrito {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0.25rem;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .articuloCarrito:last-child {
+        border-bottom: 0;
+      }
+
+      .imagenCarrito {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 18px;
+        background: #f3f3f3;
+      }
+
+      .articuloCarrito h3 {
+        margin: 0 0 0.35rem;
+        font-size: 0.98rem;
+        font-weight: 700;
+      }
+
+      .articuloCarrito p {
+        margin: 0;
+        color: #5a5a5a;
+        font-size: 0.83rem;
+      }
+
+      .precioUnidad {
+        margin-top: 0.45rem;
+        font-weight: 800;
+        color: #101010;
+      }
+
+      .controlesCantidad {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-left: auto;
+      }
+
+      .botonCantidad,
+      .botonEliminar {
+        border: 1px solid #dfe3e8;
+        background: #fff;
+        color: #1e1e1e;
+        border-radius: 10px;
+        min-width: 34px;
+        height: 34px;
+        font-weight: 700;
+      }
+
+      .botonCantidad {
+        width: 34px;
+      }
+
+      .botonEliminar {
+        min-width: 90px;
+        font-size: 0.78rem;
+        padding: 0 0.8rem;
+      }
+
+      .resumenCaja {
+        padding: 1.4rem;
+      }
+
+      .resumenCaja h2 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+      }
+
+      .pasarela {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.4rem;
+      }
+
+      .pasarelaPaso {
+        flex: 1 1 0;
+        min-width: 120px;
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.7rem 0.8rem;
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #6b7280;
+      }
+
+      .pasarelaPaso.activo {
+        background: #fee2e2;
+        border-color: #fca5a5;
+        color: #991b1b;
+      }
+
+      .pasarelaPaso.completo {
+        background: #ecfdf5;
+        border-color: #a7f3d0;
+        color: #065f46;
+      }
+
+      .filaResumen {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.8rem;
+        color: #3c3c3c;
+        line-height: 1.5;
+      }
+
+      .filaResumen .etiqueta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .info-mini {
+        width: 1.1rem;
+        height: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #fee2e2;
+        color: #b91c1c;
+        font-size: 0.68rem;
+        font-weight: 800;
+        border: 1px solid #fecaca;
+      }
+
+      .monto {
+        font-variant-numeric: tabular-nums;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: -0.03em;
+      }
+
+      .filaResumen.total {
+        margin-top: 1.2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #ececec;
+        font-size: 1.2rem;
+        font-weight: 900;
+        color: #111;
+      }
+
+      .filaResumen.total .monto {
+        color: #111827;
+        font-size: 1.35rem;
+      }
+
+      .bloqueFinanciamiento {
+        margin-top: 1rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid #ececec;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #ffffff, #fafafa);
+      }
+
+      .etiquetaFinanciamiento {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: #f2f2f2;
+        border: 1px solid #e5e7eb;
+        color: #111827;
+        border-radius: 999px;
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.32rem 0.6rem;
+        margin-bottom: 0.45rem;
+      }
+
+      .financiamientoTexto {
+        margin: 0;
+        font-size: 0.83rem;
+        line-height: 1.5;
+        color: #374151;
+      }
+
+      .financiamientoTexto strong {
+        color: #111827;
+        font-weight: 800;
+      }
+
+      .financiamientoLink {
+        display: inline-block;
+        margin-top: 0.45rem;
+        color: #111827;
+        text-decoration: underline;
+        text-underline-offset: 0.15rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .cajaCupon {
+        background: #fff8e5;
+        border: 1px solid #f3d88d;
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        margin: 1rem 0;
+        color: #654500;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      .botonPrimario {
+        border: 0;
+        background: linear-gradient(180deg, #ef4444, #dc2626);
+        color: #fff;
+        font-weight: 800;
+        padding: 0.8rem 1.1rem;
+        border-radius: 999px;
+        box-shadow: 0 12px 24px rgba(220, 38, 38, 0.23);
+        letter-spacing: 0.01em;
+        font-size: 0.9rem;
+      }
+
+      .botonSecundario {
+        background: #fff;
+        border: 1px solid #dadada;
+        color: #1d1d1d;
+        border-radius: 999px;
+        font-weight: 700;
+        box-shadow: 0 6px 16px rgba(17,24,39,0.03);
+        font-size: 0.82rem;
+      }
+
+      .estadoVacio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 3rem 1.5rem;
+      }
+
+      .estadoVacio h3 {
+        font-size: 1.7rem;
+        font-weight: 800;
+        margin-bottom: 0.6rem;
+      }
+
+      .estadoVacio p {
+        color: #5d5d5d;
+        margin-bottom: 1.2rem;
+      }
+
+      .flotanteCarrito {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 25;
+      }
+
+      .flotanteCarrito a {
+        background: #ffcd2d;
+        color: #111;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(255,205,45,0.35);
+        font-weight: 800;
+        padding: 0.9rem 1.2rem;
+        text-decoration: none;
+      }
+
+      .piePagina {
+        background: #111827;
+        color: #e5e7eb;
+        padding: 2.5rem 0 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .piePagina a {
+        color: #f9fafb;
+        text-decoration: none;
+      }
+
+      @media (max-width: 767px) {
+        .articuloCarrito {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .controlesCantidad {
+          width: 100%;
+          justify-content: flex-start;
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="container paginaCarrito">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <div>
+          <span class="etiquetaPagina">Tu compra</span>
+          <h1 class="mt-3 mb-0" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;">Carrito</h1>
+        </div>
+        <a href="galeria.html" class="btn botonSecundario px-4 py-2">Seguir comprando</a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div id="listaCarrito" class="cajaCarrito listaCarrito"></div>
+        </div>
+
+        <aside class="col-lg-4">
+          <div class="cajaCarrito resumenCaja">
+            <h2>Resumen del pedido</h2>
+
+            <div class="filaResumen">
+              <span class="etiqueta"><span class="info-mini">i</span>Subtotal</span>
+              <span class="monto" id="subtotalCarrito">$0.00</span>
+            </div>
+
+            <div class="filaResumen">
+              <span class="etiqueta"><span class="info-mini">i</span>Impuesto</span>
+              <span class="monto" id="impuestoCarrito">$0.00</span>
+            </div>
+
+            <div class="filaResumen">
+              <span class="etiqueta"><span class="info-mini">i</span>Envío</span>
+              <span class="monto" id="envioCarrito">$0.00</span>
+            </div>
+
+            <div class="filaResumen">
+              <span class="etiqueta"><span class="info-mini">i</span>Descuento</span>
+              <span class="monto" id="descuentoCarrito">-$0.00</span>
+            </div>
+
+            <form id="formularioCupon" class="mt-4">
+              <label class="form-label small fw-semibold text-secondary mb-2">Cupón</label>
+              <div class="input-group">
+                <input id="cuponInput" type="text" class="form-control" placeholder="Ej. SAVE10" />
+                <button class="btn btn-dark" type="submit">Aplicar</button>
+              </div>
+            </form>
+
+            <div class="mt-4">
+              <label class="small fw-semibold text-secondary d-block mb-3">Opciones de envío</label>
+
+              <div class="accordion" id="opcionesEnvio">
+                <div class="accordion-item border-0 rounded-3 overflow-hidden" style="background:#f9fafb; border:1px solid #e5e7eb !important; margin-bottom:0.75rem;">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3 px-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#envioEstandarPanel" aria-expanded="false" style="background:transparent; font-size:0.96rem; font-weight:700; color:#111827; box-shadow:none;">
+                      <span class="d-flex align-items-center justify-content-between w-100 gap-3">
+                        <span class="d-flex align-items-center gap-2">
+                          <input class="form-check-input mt-0 me-2" type="radio" name="metodoEnvio" id="envioEstandar" value="estandar" checked>
+                          <span>Estándar</span>
+                        </span>
+                        <span class="monto" style="font-size:0.95rem;">$179</span>
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="envioEstandarPanel" class="accordion-collapse collapse" data-bs-parent="#opcionesEnvio">
+                    <div class="accordion-body small text-secondary px-3 py-2" style="line-height:1.6;">
+                      Entrega en 3 a 5 días hábiles. Incluye seguimiento de pedido y preparación del paquete.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item border-0 rounded-3 overflow-hidden" style="background:#f9fafb; border:1px solid #e5e7eb !important; margin-bottom:0.75rem;">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3 px-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#envioExpressPanel" aria-expanded="false" style="background:transparent; font-size:0.96rem; font-weight:700; color:#111827; box-shadow:none;">
+                      <span class="d-flex align-items-center justify-content-between w-100 gap-3">
+                        <span class="d-flex align-items-center gap-2">
+                          <input class="form-check-input mt-0 me-2" type="radio" name="metodoEnvio" id="envioExpress" value="express">
+                          <span>Express</span>
+                        </span>
+                        <span class="monto" style="font-size:0.95rem;">$299</span>
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="envioExpressPanel" class="accordion-collapse collapse" data-bs-parent="#opcionesEnvio">
+                    <div class="accordion-body small text-secondary px-3 py-2" style="line-height:1.6;">
+                      Llegada en 24 a 48 horas. Ideal para entregas urgentes con prioridad de preparación y despacho.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item border-0 rounded-3 overflow-hidden" style="background:#f9fafb; border:1px solid #e5e7eb !important;">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3 px-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#envioTiendaPanel" aria-expanded="false" style="background:transparent; font-size:0.96rem; font-weight:700; color:#111827; box-shadow:none;">
+                      <span class="d-flex align-items-center justify-content-between w-100 gap-3">
+                        <span class="d-flex align-items-center gap-2">
+                          <input class="form-check-input mt-0 me-2" type="radio" name="metodoEnvio" id="recogerTienda" value="tienda">
+                          <span>Recoger en tienda</span>
+                        </span>
+                        <span class="monto" style="font-size:0.95rem;">Gratis</span>
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="envioTiendaPanel" class="accordion-collapse collapse" data-bs-parent="#opcionesEnvio">
+                    <div class="accordion-body small text-secondary px-3 py-2" style="line-height:1.6;">
+                      Sin costo adicional. Puedes recoger tu pedido cuando esté listo y ahorrar en envío.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cajaCupon"><span class="info-mini">i</span> Envío gratis al comprar más de $1,500 o 3 productos</div>
+
+            <div class="filaResumen total">
+              <span>Total</span>
+              <span class="monto" id="totalCarrito">$0.00</span>
+            </div>
+
+            <div class="bloqueFinanciamiento">
+              <div class="etiquetaFinanciamiento">Sin interés</div>
+              <p class="financiamientoTexto">
+                Hasta 18 mensualidades fijas de <strong>$264.35</strong>
+              </p>
+              <p class="financiamientoTexto">o hasta 8 plazos con Cashi</p>
+              <a href="#" class="financiamientoLink">Ver detalles</a>
+            </div>
+
+            <div class="small text-secondary mt-3 mb-2">
+              Pago seguro con protección para compras en línea.
+            </div>
+
+            <button class="btn botonPrimario w-100 mt-2">Pagar ahora</button>
+            <button id="vaciarCarrito" class="btn botonSecundario w-100 mt-2">Vaciar carrito</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="flotanteCarrito">
+      <a href="carrito.html" class="d-inline-flex align-items-center gap-2">🛒 Ver carrito</a>
+    </div>
+
+    <footer class="piePagina">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="fw-bold mb-3">Tienda Sara</h5>
+            <p class="mb-0 text-light-emphasis">Maternidad y bebés con estilo, comodidad y confianza.</p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold mb-3">Navegación</h6>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="galeria.html">Galería</a></li>
+              <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold mb-3">Contacto</h6>
+            <p class="mb-1 text-light-emphasis">soporte@tiendasara.com</p>
+            <p class="mb-0 text-light-emphasis">+52 55 1234 5678</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const PRODUCTOS = [
+        { id: 1, nombre: 'Vestido de Maternidad Casual', categoria: 'ropa', marca: 'Maternity Line', precio: 899.00, cantidad: 20, imagen: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=900&q=80' },
+        { id: 2, nombre: 'Crema Anti-Estrías para Embarazo', categoria: 'higiene', marca: 'Mustela', precio: 450.00, cantidad: 35, imagen: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80' },
+        { id: 3, nombre: 'Extractor de Leche Eléctrico', categoria: 'cocina', marca: 'Avent', precio: 2199.00, cantidad: 12, imagen: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80' },
+        { id: 4, nombre: 'Cojín / Almohada de Lactancia Ergonomica', categoria: 'articulos-hogar', marca: 'Boppy', precio: 799.00, cantidad: 15, imagen: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80' },
+        { id: 5, nombre: 'Mellizos / Cuna Colecho Ajustable', categoria: 'bebes', marca: 'Chicco', precio: 3499.00, cantidad: 8, imagen: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80' }
+      ];
+
+      const CARRITO_CLAVE = 'tiendaSaraCarrito';
+      const CUPON_CLAVE = 'tiendaSaraCupon';
+
+      function obtenerCarrito() {
+        try {
+          return JSON.parse(localStorage.getItem(CARRITO_CLAVE)) || [];
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function guardarCarrito(carrito) {
+        localStorage.setItem(CARRITO_CLAVE, JSON.stringify(carrito));
+      }
+
+      function formatearPrecio(valor) {
+        return new Intl.NumberFormat('es-MX', {
+          style: 'currency',
+          currency: 'MXN'
+        }).format(valor);
+      }
+
+      function buscarProducto(id) {
+        return PRODUCTOS.find(producto => producto.id === id);
+      }
+
+      function calcularEnvio(subtotal, metodo, cantidadTotal) {
+        const envioGratis = subtotal >= 1500 || cantidadTotal >= 3;
+        if (envioGratis) return 0;
+
+        switch (metodo) {
+          case 'express':
+            return 299;
+          case 'tienda':
+            return 0;
+          default:
+            return 179;
+        }
+      }
+
+      function actualizarContadorCarrito() {
+        const contador = document.getElementById('carritoContador');
+        if (!contador) return;
+
+        const total = obtenerCarrito().reduce((sum, item) => sum + (Number(item.cantidad) || 0), 0);
+        contador.textContent = total;
+      }
+
+      function configurarBotonCarritoHeader() {
+        const carritoLink = document.getElementById('botonCarritoHeader');
+        const texto = carritoLink?.querySelector('.texto-carrito');
+        if (!carritoLink || !texto) return;
+
+        const textoOriginal = 'Carrito';
+        const textoHover = 'Proceder al pago';
+
+        carritoLink.addEventListener('mouseenter', () => {
+          texto.textContent = textoHover;
+        });
+
+        carritoLink.addEventListener('mouseleave', () => {
+          texto.textContent = textoOriginal;
+        });
+      }
+
+      function renderCarrito() {
+        const carrito = obtenerCarrito();
+        const contenedor = document.getElementById('listaCarrito');
+        const subtotalCarrito = document.getElementById('subtotalCarrito');
+        const impuestoCarrito = document.getElementById('impuestoCarrito');
+        const envioCarrito = document.getElementById('envioCarrito');
+        const descuentoCarrito = document.getElementById('descuentoCarrito');
+        const totalCarrito = document.getElementById('totalCarrito');
+
+        if (!carrito.length) {
+          contenedor.innerHTML = `
+            <div class="estadoVacio">
+              <h3>Tu carrito está vacío</h3>
+              <p>Aún no agregaste productos. Explora la galería para comenzar.</p>
+              <a href="galeria.html" class="btn botonPrimario px-4">Ir a la galería</a>
+            </div>
+          `;
+
+          subtotalCarrito.textContent = formatearPrecio(0);
+          impuestoCarrito.textContent = formatearPrecio(0);
+          envioCarrito.textContent = formatearPrecio(0);
+          descuentoCarrito.textContent = '-'+formatearPrecio(0);
+          totalCarrito.textContent = formatearPrecio(0);
+          return;
+        }
+
+        const subtotal = carrito.reduce((acumulado, item) => {
+          const producto = buscarProducto(item.id);
+          return acumulado + (producto ? producto.precio * item.cantidad : 0);
+        }, 0);
+
+        const cantidadTotal = carrito.reduce((acumulado, item) => acumulado + item.cantidad, 0);
+        const metodo = document.querySelector('input[name="metodoEnvio"]:checked')?.value || 'estandar';
+        const envio = calcularEnvio(subtotal, metodo, cantidadTotal);
+        const impuesto = subtotal * 0.16;
+        const cuponAplicado = localStorage.getItem(CUPON_CLAVE) === 'SAVE10' ? subtotal * 0.10 : 0;
+        const total = subtotal + impuesto + envio - cuponAplicado;
+
+        contenedor.innerHTML = carrito.map(item => {
+          const producto = buscarProducto(item.id);
+          if (!producto) return '';
+
+          const subtotalProducto = producto.precio * item.cantidad;
+
+          return `
+            <article class="articuloCarrito">
+              <img class="imagenCarrito" src="${producto.imagen}" alt="${producto.nombre}" />
+
+              <div class="flex-grow-1">
+                <h3>${producto.nombre}</h3>
+                <p>Precio unitario: ${formatearPrecio(producto.precio)}</p>
+                <div class="precioUnidad">Subtotal: ${formatearPrecio(subtotalProducto)}</div>
+              </div>
+
+              <div class="controlesCantidad">
+                <button class="botonCantidad" type="button" data-accion="restar" data-id="${producto.id}">−</button>
+                <input type="number" min="1" value="${item.cantidad}" data-cantidad-id="${producto.id}" style="width: 56px; text-align:center; border:1px solid #dfe3e8; border-radius:8px; height:34px;">
+                <button class="botonCantidad" type="button" data-accion="sumar" data-id="${producto.id}">＋</button>
+                <button class="botonEliminar" type="button" data-accion="eliminar" data-id="${producto.id}">Eliminar</button>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        subtotalCarrito.textContent = formatearPrecio(subtotal);
+        impuestoCarrito.textContent = formatearPrecio(impuesto);
+        envioCarrito.textContent = formatearPrecio(envio);
+        descuentoCarrito.textContent = '-' + formatearPrecio(cuponAplicado);
+        totalCarrito.textContent = formatearPrecio(total);
+        actualizarContadorCarrito();
+      }
+
+      function actualizarCantidad(productoId, nuevoValor) {
+        const carrito = obtenerCarrito();
+        const item = carrito.find(producto => producto.id === productoId);
+        const producto = PRODUCTOS.find(productoActual => productoActual.id === productoId);
+
+        if (!item || !producto) return;
+
+        const valorLimiteado = Math.min(Math.max(1, Number(nuevoValor) || 1), producto.cantidad);
+        item.cantidad = valorLimiteado;
+        guardarCarrito(carrito);
+        renderCarrito();
+      }
+
+      document.addEventListener('click', (event) => {
+        const boton = event.target.closest('[data-accion]');
+        if (!boton) return;
+
+        const carrito = obtenerCarrito();
+        const id = Number(boton.dataset.id);
+        const accion = boton.dataset.accion;
+
+        if (accion === 'sumar') {
+          const item = carrito.find(producto => producto.id === id);
+          const producto = PRODUCTOS.find(productoActual => productoActual.id === id);
+          if (!producto) return;
+          if (item && item.cantidad < producto.cantidad) item.cantidad += 1;
+          else if (item) alert(`Solo quedan ${producto.cantidad} unidades disponibles.`);
+        }
+
+        if (accion === 'restar') {
+          const item = carrito.find(producto => producto.id === id);
+          if (!item) return;
+          if (item.cantidad > 1) item.cantidad -= 1;
+          else {
+            const indice = carrito.findIndex(producto => producto.id === id);
+            if (indice >= 0) carrito.splice(indice, 1);
+          }
+        }
+
+        if (accion === 'eliminar') {
+          const indice = carrito.findIndex(producto => producto.id === id);
+          if (indice >= 0) carrito.splice(indice, 1);
+        }
+
+        guardarCarrito(carrito);
+        actualizarContadorCarrito();
+        renderCarrito();
+      });
+
+      document.addEventListener('input', (event) => {
+        const campo = event.target.closest('[data-cantidad-id]');
+        if (!campo) return;
+        const productoId = Number(campo.dataset.cantidadId);
+        const producto = PRODUCTOS.find(item => item.id === productoId);
+        if (!producto) return;
+
+        const valor = Math.min(Math.max(Number(campo.value) || 1, 1), producto.cantidad);
+        campo.value = valor;
+        actualizarCantidad(productoId, valor);
+      });
+
+      document.getElementById('vaciarCarrito')?.addEventListener('click', () => {
+        const carritoActual = obtenerCarrito();
+
+        if (!carritoActual.length) {
+          alert('Tu carrito ya está vacío.');
+          return;
+        }
+
+        const confirmar = window.confirm('¿Seguro que deseas vaciar el carrito?');
+        if (!confirmar) return;
+
+        localStorage.removeItem(CARRITO_CLAVE);
+        localStorage.removeItem(CUPON_CLAVE);
+        actualizarContadorCarrito();
+        renderCarrito();
+        alert('El carrito se ha vaciado correctamente.');
+      });
+
+      document.querySelector('.botonPrimario')?.addEventListener('click', () => {
+        const carritoActual = obtenerCarrito();
+
+        if (!carritoActual.length) {
+          alert('Agrega productos antes de continuar con el pago.');
+          return;
+        }
+
+        const confirmarPago = window.confirm('¿Deseas continuar con el pago?');
+        if (!confirmarPago) return;
+
+        alert('Pago procesado correctamente. Gracias por tu compra.');
+        localStorage.removeItem(CARRITO_CLAVE);
+        localStorage.removeItem(CUPON_CLAVE);
+        actualizarContadorCarrito();
+        renderCarrito();
+      });
+
+      document.getElementById('formularioCupon')?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const valor = document.getElementById('cuponInput').value.trim().toUpperCase();
+
+        if (valor === 'SAVE10') {
+          localStorage.setItem(CUPON_CLAVE, 'SAVE10');
+          alert('Cupón aplicado correctamente');
+        } else {
+          localStorage.removeItem(CUPON_CLAVE);
+          alert('Cupón no válido');
+        }
+
+        renderCarrito();
+      });
+
+      document.querySelectorAll('input[name="metodoEnvio"]').forEach(radio => {
+        radio.addEventListener('change', renderCarrito);
+      });
+
+      function controlarHeader() {
+        const contenedor = document.getElementById('header-placeholder');
+        if (!contenedor) return;
+
+        const headerAlterno = `
+          <div class="header-fallback bg-warning text-dark border-bottom">
+            <div class="container d-flex justify-content-center align-items-center gap-3 py-2 small fw-semibold text-uppercase">
+              <span>🚚</span>
+              <span>Aprovecha envíos gratis</span>
+              <a href="galeria.html" class="btn btn-sm btn-dark rounded-pill px-3 py-1">Aprovecha</a>
+            </div>
+          </div>
+        `;
+
+        fetch('header.html')
+          .then(respuesta => {
+            if (!respuesta.ok) throw new Error('Header no disponible');
+            return respuesta.text();
+          })
+          .then(data => {
+            if (!data || !data.trim()) throw new Error('Header vacío');
+            contenedor.innerHTML = data;
+            marcarSubmenuActivo();
+          })
+          .catch(() => {
+            contenedor.innerHTML = headerAlterno;
+            marcarSubmenuActivo();
+          });
+      }
+
+      function marcarSubmenuActivo() {
+        const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
+        const enlaces = document.querySelectorAll('#subNavLinks .nav-link, #header-placeholder .nav-link');
+
+        enlaces.forEach(enlace => {
+          const href = enlace.getAttribute('href');
+          if (!href) return;
+
+          const hrefNormalizado = href.replace(/^\.\//, '');
+          enlace.classList.remove('btn', 'btn-light', 'btn-secondary', 'bg-light');
+
+          if (hrefNormalizado === paginaActual) {
+            enlace.classList.remove('text-secondary', 'bg-transparent');
+            enlace.classList.add('active', 'text-danger', 'fw-bold');
+            enlace.style.backgroundColor = 'transparent';
+          } else {
+            enlace.classList.remove('active', 'text-danger', 'fw-bold');
+            enlace.style.backgroundColor = 'transparent';
+            if (!enlace.classList.contains('text-secondary')) {
+              enlace.classList.add('text-secondary');
+            }
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderCarrito();
+        controlarHeader();
+        setTimeout(() => {
+          actualizarContadorCarrito();
+          configurarBotonCarritoHeader();
+        }, 200);
+      });
+    </script>
+  </body>
+</html>
